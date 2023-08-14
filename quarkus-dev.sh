@@ -2,7 +2,10 @@
 
 if [ -f .env ]
 then
-  export $(cat .env | xargs)
+  while read line; do
+      echo export "$line";
+      export "$line";
+  done < .env
 fi
 
 quarkus dev
